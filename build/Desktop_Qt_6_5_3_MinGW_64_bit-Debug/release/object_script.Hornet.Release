@@ -2,7 +2,6 @@ release/attackstate.o
 release/backstate.o
 release/dashstate.o
 release/defencestate.o
-release/defencingstate.o
 release/duckstate.o
 release/idlestate.o
 release/lwalkstate.o
@@ -19,7 +18,6 @@ release/moc_attackstate.o
 release/moc_backstate.o
 release/moc_dashstate.o
 release/moc_defencestate.o
-release/moc_defencingstate.o
 release/moc_duckstate.o
 release/moc_idlestate.o
 release/moc_lwalkstate.o

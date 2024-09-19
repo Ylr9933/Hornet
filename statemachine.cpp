@@ -3,6 +3,7 @@
 StateMachine::StateMachine(QObject *parent)
     :QObject(parent)
 {
+    autoSwitch=false;
 }
 
 void StateMachine::changeState(State *newState)
@@ -15,4 +16,14 @@ void StateMachine::changeState(State *newState)
 State *StateMachine::getCurrentState()
 {
     return currentState;
+}
+
+bool StateMachine::getAutoSwitch()
+{
+    return autoSwitch;
+}
+
+void StateMachine::setAutoSwitch(bool flag)
+{
+    autoSwitch=flag;
 }

@@ -15,6 +15,8 @@ State::~State(){
         delete animation;
     if(delayTimer)
         delete delayTimer;
+    if(switchTimer)
+        delete switchTimer;
 }
 QString State::getName(){
     return name;
@@ -24,10 +26,8 @@ QMovie *State::getMovie(){
     return movie;
 }
 void State::enter(){
-    qDebug()<<name<<movie;
     movie->start();
     emit enterState(this);
-    qDebug()<<"enterState:"<<name;
 }
 void State::exit(){
 

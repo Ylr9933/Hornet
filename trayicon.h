@@ -11,7 +11,6 @@ public:
     explicit TrayIcon(QObject *parent = nullptr);
 
 private slots:
-    void showAboutMessage();
     void quitApp();
 
 private:

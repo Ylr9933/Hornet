@@ -8,9 +8,18 @@ BackState::BackState(QString name, QMovie *movie,Widget *widget,StateMachine *st
     connect(movie, &QMovie::frameChanged, [=](int frameNumber) {
         if (frameNumber == movie->frameCount()-1) {//若此时为最后一帧
             movie->stop();
-            stateMachine->changeState(widget->idleState);
+            if(stateMachine->getCurrentState()==this)
+            {
+                stateMachine->changeState(widget->idleState);
+                widget->move(widget->pos()-QPoint(deltaX,deltaY));
+            }
         }
     });
+}
+
+BackState::~BackState()
+{
+    State::~State();
 }
 
 void BackState::enter()

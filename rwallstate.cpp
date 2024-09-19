@@ -1,15 +1,34 @@
 #include "rwallstate.h"
 #include"widget.h"
 #include"statemachine.h"
-
+#include<QRandomGenerator>
 RWallState::RWallState(QString name, QMovie *movie,Widget *widget,StateMachine *stateMachine)
     :State(name,movie,widget,stateMachine)
 {
     connect(widget,&Widget::mouseEvent,this,&RWallState::onMouseEvent);
+    switchTimer = new QTimer(this);
+    switchTimer->setInterval(10000); // 每10秒检查一次
+    switchTimer->start();
+    connect(switchTimer, &QTimer::timeout, this, [=]() {
+        if(!stateMachine->getAutoSwitch()||stateMachine->getCurrentState()!=this)
+            return ;
+        int random = QRandomGenerator::global()->bounded(100);
+        if(random<60)//下墙
+        {
+            stateMachine->changeState(widget->lwalkState);
+        }
+    });
+}
+
+RWallState::~RWallState()
+{
+State::~State();
 }
 
 void RWallState::enter()
 {
+
+
     State::enter();
 
 

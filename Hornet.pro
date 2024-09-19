@@ -15,9 +15,9 @@ SOURCES += \
     backstate.cpp \
     dashstate.cpp \
     defencestate.cpp \
-    defencingstate.cpp \
     duckstate.cpp \
     idlestate.cpp \
+    jumpstate.cpp \
     lwalkstate.cpp \
     lwallstate.cpp \
     main.cpp \
@@ -33,9 +33,9 @@ HEADERS += \
     backstate.h \
     dashstate.h \
     defencestate.h \
-    defencingstate.h \
     duckstate.h \
     idlestate.h \
+    jumpstate.h \
     lwalkstate.h \
     lwallstate.h \
     rwalkstate.h \

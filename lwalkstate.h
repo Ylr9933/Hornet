@@ -8,6 +8,7 @@ class LWalkState : public State
     Q_OBJECT
 public:
     LWalkState(QString name, QMovie *movie,Widget *widget,StateMachine *stateMachine);
+    virtual~LWalkState();
     void  enter()override;
 protected slots:
     void onMouseEvent(QMouseEvent*event,QPoint mousePoint,int eventType)override;

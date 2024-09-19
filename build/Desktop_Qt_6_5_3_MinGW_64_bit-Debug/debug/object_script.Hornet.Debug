@@ -2,7 +2,6 @@ debug/attackstate.o
 debug/backstate.o
 debug/dashstate.o
 debug/defencestate.o
-debug/defencingstate.o
 debug/duckstate.o
 debug/idlestate.o
 debug/lwalkstate.o
@@ -19,7 +18,6 @@ debug/moc_attackstate.o
 debug/moc_backstate.o
 debug/moc_dashstate.o
 debug/moc_defencestate.o
-debug/moc_defencingstate.o
 debug/moc_duckstate.o
 debug/moc_idlestate.o
 debug/moc_lwalkstate.o

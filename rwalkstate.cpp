@@ -1,15 +1,41 @@
 #include "rwalkstate.h"
 #include"widget.h"
 #include"statemachine.h"
-
+#include<QRandomGenerator>
 RWalkState::RWalkState(QString name, QMovie *movie,Widget *widget,StateMachine *stateMachine)
     :State(name,movie,widget,stateMachine)
 {
     connect(widget,&Widget::mouseEvent,this,&RWalkState::onMouseEvent);
+
+
+    /* 初始化动画 */
+    animation = new QPropertyAnimation(widget, "pos");
+    animation->setDuration(1500); // 动画持续时间为100毫秒
+    animation->setEasingCurve(QEasingCurve::OutQuad); // 设置动画曲线
+
+    // 连接 finished 信号到槽函数
+    connect(animation, &QPropertyAnimation::finished, this, [=]() {
+        if(!stateMachine->getAutoSwitch()||stateMachine->getCurrentState()!=this)
+            return ;
+        qDebug() << "动画完成！";
+        stateMachine->changeState(widget->idleState);
+
+    });
+}
+
+RWalkState::~RWalkState()
+{
+State::~State();
 }
 
 void RWalkState::enter()
 {
+    if(widget->mousePressed==false)//不处于鼠标拖动状态
+    {
+        animation->setStartValue(widget->pos());
+        animation->setEndValue(widget->pos()+QPoint(300,0));
+        animation->start();
+    }
     State::enter();
 
 

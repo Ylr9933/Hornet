@@ -31,13 +31,6 @@ QMenu *TrayIcon::createTrayIconMenu()
 
     return menu;
 }
-
-void TrayIcon::showAboutMessage()
-{
-    QMessageBox::about(QApplication::activeWindow(), tr("About Application"),
-                       tr("This is an application running in system tray."));
-}
-
 void TrayIcon::quitApp()
 {
     QApplication::quit();

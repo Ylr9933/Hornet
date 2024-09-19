@@ -25,6 +25,11 @@ DashState::DashState(QString name, QMovie *movie,Widget *widget,StateMachine *st
     });
 }
 
+DashState::~DashState()
+{
+    State::~State();
+}
+
 void DashState::enter()
 {
     animation->setStartValue(widget->pos());

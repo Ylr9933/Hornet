@@ -21,6 +21,8 @@ protected:
     /* 位移动画 */
     QPropertyAnimation *animation;
     QTimer *delayTimer;
+    /*状态机转移时间*/
+    QTimer *switchTimer ;
 public:
     State(QString name,QMovie *movie,Widget *widget,StateMachine *stateMachine);
     virtual ~State();

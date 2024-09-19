@@ -8,18 +8,24 @@ AttackState::AttackState(QString name, QMovie *movie,Widget *widget,StateMachine
     connect(movie, &QMovie::frameChanged, [=](int frameNumber) {
         if (frameNumber == movie->frameCount()-1) {//若此时为最后一帧
             movie->stop();
-            stateMachine->changeState(widget->idleState);
-            widget->move(lastPosition);
+            if(stateMachine->getCurrentState()==this)
+            {
+                stateMachine->changeState(widget->idleState);
+                widget->move(widget->pos()-QPoint(deltaX,deltaY));
+            }
         }
     });
 }
 
+AttackState::~AttackState()
+{
+    State::~State();
+}
+
 void AttackState::enter()
 {
-    //获取动画前的位置
-    lastPosition=widget->pos();
-    widget->move(widget->pos()+QPoint(-50,-25));
     State::enter();
+    widget->move(widget->pos()+QPoint(deltaX,deltaY));
 }
 
 void AttackState::onMouseEvent(QMouseEvent *event, QPoint mousePoint,  int eventType)

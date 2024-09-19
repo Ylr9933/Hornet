@@ -26,6 +26,11 @@ DuckState::DuckState(QString name, QMovie *movie,Widget *widget,StateMachine *st
     });
 }
 
+DuckState::~DuckState()
+{
+    State::~State();
+}
+
 void DuckState::enter()
 {
     State::enter();    

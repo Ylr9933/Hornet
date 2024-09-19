@@ -10,15 +10,25 @@ DefenceState::DefenceState(QString name, QMovie *movie,Widget *widget,StateMachi
     connect(movie, &QMovie::frameChanged, [=](int frameNumber) {
         if (frameNumber == movie->frameCount()-1) {//若此时为最后一帧
             movie->stop();
-            stateMachine->changeState(widget->defencingState);
+            if(stateMachine->getCurrentState()==this)
+            {
+                stateMachine->changeState(widget->idleState);
+                widget->move(widget->pos()-QPoint(deltaX,deltaY));
+            }
         }
     });
 }
 
+DefenceState::~DefenceState()
+{
+    State::~State();
+}
+
 void DefenceState::enter()
 {
-    State::enter();
 
+    State::enter();
+    widget->move(widget->pos()+QPoint(deltaX,deltaY));
 }
 
 void DefenceState::onMouseEvent(QMouseEvent *event, QPoint mousePoint, int eventType)

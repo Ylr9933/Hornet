@@ -3,8 +3,8 @@
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::Widget)
     , stateMachine(new StateMachine)
+    , ui(new Ui::Widget)
     , trayIcon(new TrayIcon(this))
 {
     ui->setupUi(this);
@@ -56,14 +56,14 @@ void Widget::initState()
     defenceState = new DefenceState("defence",new QMovie(":/gifs/defence.gif"),this,stateMachine);
     connect(defenceState,&DefenceState::enterState,this,&Widget::on_enterState);
 
-    defencingState = new DefencingState("defencing",new QMovie(":/gifs/defencing.gif"),this,stateMachine);
-    connect(defencingState,&DefencingState::enterState,this,&Widget::on_enterState);
-
     backState = new BackState("back",new QMovie(":/gifs/back.gif"),this,stateMachine);
     connect(backState,&BackState::enterState,this,&Widget::on_enterState);
 
     duckState = new DuckState("duck",new QMovie(":/gifs/duck.gif"),this,stateMachine);
     connect(duckState,&DuckState::enterState,this,&Widget::on_enterState);
+
+    jumpState = new JumpState("jump",new QMovie(":/gifs/jump1.gif"),this,stateMachine);
+    connect(jumpState,&JumpState::enterState,this,&Widget::on_enterState);
 }
 
 void Widget::on_enterState(){
@@ -139,11 +139,13 @@ void Widget::moveEvent(QMoveEvent *event){
         y=bottomBoundary;
 
     if (position.x() < leftBoundary) {
-       // stateMachine->changeState(lwallState);
+        if(stateMachine->getCurrentState()==lwalkState)
+            stateMachine->changeState(lwallState);
         move(leftBoundary, y);
     }
     if (position.x() > rightBoundary) {
-        //stateMachine->changeState(rwallState);
+        if(stateMachine->getCurrentState()==rwalkState)
+            stateMachine->changeState(rwallState);
         move(rightBoundary, y);
     }
     if (position.y() <upBoundary ) {

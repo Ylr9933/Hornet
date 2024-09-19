@@ -8,6 +8,7 @@ class DashState : public State
     Q_OBJECT
 public:
     DashState(QString name, QMovie *movie,Widget *widget,StateMachine *stateMachine);
+    virtual~DashState();
     void  enter()override;
 protected slots:
     void onMouseEvent(QMouseEvent*event,QPoint mousePoint,int eventType)override;

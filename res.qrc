@@ -1,10 +1,7 @@
 <RCC>
     <qresource prefix="/gifs">
         <file>attack.gif</file>
-        <file>back.gif</file>
         <file>dash.gif</file>
-        <file>defence.gif</file>
-        <file>defencing.gif</file>
         <file>duck.gif</file>
         <file>idle.gif</file>
         <file>jump1.gif</file>
@@ -13,5 +10,10 @@
         <file>lwall.gif</file>
         <file>rwalk.gif</file>
         <file>rwall.gif</file>
+        <file>defence.gif</file>
+        <file>back.gif</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file>icon.png</file>
     </qresource>
 </RCC>

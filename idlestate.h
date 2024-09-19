@@ -7,17 +7,23 @@ class IdleState:public State{
     Q_OBJECT
 public:
     IdleState(QString name,QMovie *movie,Widget *widget,StateMachine *stateMachine);
+    virtual ~IdleState();
     void enter()override;
 protected slots:
     void onMouseEvent(QMouseEvent*event,QPoint mousePoint,int eventType)override;
 protected:
     QMenu *menu;
+    QMenu *subMenu;
     QAction* selectedAction;
-    const QAction *action1;
-    const QAction *action2;
-    const QAction *action3;
-    const QAction *action4;
-    const QAction *action5;
+    QAction *action1;
+    QAction *action2;
+    QAction *action3;
+    QAction *action4;
+    QAction *action5;
+    QAction *action6;
+    QAction *onAction;
+    QAction *offAction;
+    QActionGroup *switchGroup;
 };
 
 #endif // IDLESTATE_H

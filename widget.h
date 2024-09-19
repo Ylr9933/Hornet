@@ -8,6 +8,7 @@
 #include<QDir>
 #include<QMovie>
 #include<QPropertyAnimation>
+#include "jumpstate.h"
 #include"statemachine.h"
 #include"attackstate.h"
 #include"duckstate.h"
@@ -19,7 +20,6 @@
 #include"lwallstate.h"
 #include"rwallstate.h"
 #include"backstate.h"
-#include"defencingstate.h"
 #include"trayicon.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -43,10 +43,11 @@ public:
     RWallState* rwallState;
     DashState* dashState;
     DefenceState *defenceState;
-    DefencingState *defencingState;
     BackState *backState;
     AttackState *attackState;
     DuckState*duckState;
+    JumpState*jumpState;
+    bool mousePressed;//鼠标是否按下
 protected slots:
     void on_enterState();
 signals:
@@ -68,7 +69,7 @@ protected:
     QPoint lastPosition;//播放动画前的坐标
 
     QPoint mousePoint;//鼠标位置
-    bool mousePressed;//鼠标是否按下
+
     bool isdefending;//正在防御
 
 };

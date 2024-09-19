@@ -8,6 +8,7 @@ class DuckState : public State
     Q_OBJECT
 public:
     DuckState(QString name, QMovie *movie,Widget *widget,StateMachine *stateMachine);
+    virtual~DuckState();
     void enter()override;
 protected slots:
     void onMouseEvent(QMouseEvent*event,QPoint mousePoint,int eventType)override;
